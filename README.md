@@ -57,8 +57,8 @@ Perfect for learning audio APIs, reducer patterns, and integrating Wavesurfer in
 
 ```bash
 # Clone
-git clone https://github.com/<your-username>/voice-recorder-nextjs.git
-cd voice-recorder-nextjs
+git clone https://github.com/samuel-adjin/voice-recorder.git
+cd voice-recorder
 
 # Install dependencies
 npm install
