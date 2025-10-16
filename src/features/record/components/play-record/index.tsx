@@ -1,5 +1,4 @@
 import Header from "@/features/common/components/header";
-import Wave from "@/features/common/components/wave-shape";
 import React from "react";
 import AudioVisualizer from "@/features/common/components/audio-visualizer";
 
