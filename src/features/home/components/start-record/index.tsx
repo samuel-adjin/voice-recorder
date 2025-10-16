@@ -63,7 +63,6 @@ const StartRecord = () => {
           {data.map((d, index) => (
             <Card
               title={d.title}
-              icon={d.icon}
               content={d.content}
               key={index + d.title}
             />
