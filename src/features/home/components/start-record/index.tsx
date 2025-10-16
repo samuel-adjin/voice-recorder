@@ -59,7 +59,7 @@ const StartRecord = () => {
         </div>
       </Header>
       <Wave>
-        <div className="lg:mx-56 mx-5 lg:p-10 pt-10 grid lg:grid-cols-3 lg:gap-10 gap-3 ">
+        <div className="lg:mx-56 mx-5 lg:p-10 pt-10 grid lg:grid-cols-3 lg:gap-10 gap-3 pb-10 lg:pb-0 ">
           {data.map((d, index) => (
             <Card
               title={d.title}

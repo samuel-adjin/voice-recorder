@@ -31,7 +31,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col lg:overflow-hidden`}
       >
         <Link href={"/"} className="cursor-pointer">
-          <div className="text-sm font-bold my-5 mx-5">VoiceLogo</div>
+          <div className="text-sm font-bold lg:my-10 my-5 mx-5">VoiceLogo</div>
         </Link>
         <main className="flex-grow mx-5">
           <AudioProvider>{children}</AudioProvider>
