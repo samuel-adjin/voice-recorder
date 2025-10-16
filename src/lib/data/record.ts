@@ -21,7 +21,7 @@ export const handleRecord = async (recordRef: RefObject<RecordPlugin>, selectedD
         return;
     }
     try {
-        const options: any = {};
+        const options: MediaTrackConstraints | undefined = {};
         if (selectedDevice) options.deviceId = selectedDevice;
         await recordRef.current.startRecording(options);
     } catch (err) {

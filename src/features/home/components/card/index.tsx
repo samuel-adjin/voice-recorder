@@ -1,11 +1,10 @@
-import React, { ReactNode } from "react";
+import React from "react";
 
 type CardProps = {
   title: string;
-  icon: ReactNode;
   content: string;
 };
-const Card = ({ content, title, icon }: CardProps) => {
+const Card = ({ content, title }: CardProps) => {
   return (
     <div>
       <div className="flex gap-0.5">
