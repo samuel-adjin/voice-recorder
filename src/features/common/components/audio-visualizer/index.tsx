@@ -1,7 +1,7 @@
 "use client";
-
 import { useRef, useEffect } from "react";
 import WaveSurfer from "wavesurfer.js";
+import RecordPlugin from "wavesurfer.js/dist/plugins/record";
 import RecorderButton from "@/features/common/components/recorder-button";
 import { Pause, Play, Square } from "lucide-react";
 import Transcript from "@/features/record/components/transcript";
@@ -19,7 +19,8 @@ export type Recording = {
 export default function AudioVisualizer() {
   const micRef = useRef<HTMLDivElement | null>(null);
   const wavesurferRef = useRef<WaveSurfer | null>(null);
-  const recordRef = useRef<any>(null);
+  const recordRef = useRef<RecordPlugin | null>(null);
+  const unsubscribersRef = useRef<(() => void)[]>([]);
   const { state, dispatch } = useAudio();
 
   useEffect(() => {
@@ -37,26 +38,23 @@ export default function AudioVisualizer() {
       }
     };
     updateDevices();
-
     navigator.mediaDevices.addEventListener("devicechange", updateDevices);
-
     return () => {
       mounted = false;
       navigator.mediaDevices.removeEventListener("devicechange", updateDevices);
     };
-  }, [state.selectedDevice]);
+  }, [state.selectedDevice, dispatch]);
 
   useEffect(() => {
     initWaveSurfer(recordRef, wavesurferRef, micRef, dispatch);
+    
     return () => {
-      if (recordRef.current && recordRef.current.off) {
+      unsubscribersRef.current.forEach((unsubscribe) => {
         try {
-          recordRef.current.off("record-end");
-          recordRef.current.off("record-progress");
-          recordRef.current.off("deviceReady");
-          recordRef.current.off("deviceError");
+          unsubscribe();
         } catch {}
-      }
+      });
+      unsubscribersRef.current = [];
       if (wavesurferRef.current) {
         try {
           wavesurferRef.current.destroy();
@@ -84,13 +82,11 @@ export default function AudioVisualizer() {
   return (
     <div className="lg:p-8 p-3 max-w-4xl mx-auto">
       <p className="text-md text-center mb-4">{state.progress}</p>
-
       <div
         ref={micRef}
         className="rounded p-4 mb-4 border border-gray-200"
         style={{ minHeight: 100 }}
       />
-
       <div className="flex gap-5 justify-center ">
         <RecorderButton handler={onRecord}>
           <div>
@@ -101,14 +97,12 @@ export default function AudioVisualizer() {
             )}
           </div>
         </RecorderButton>
-
         <RecorderButton handler={onStop}>
           <div>
             <Square className="text-white" />
           </div>
         </RecorderButton>
       </div>
-
       <div className="flex justify-center items-center">
         <div className="flex flex-col items-center justify-center pt-4 space-y-10">
           <Transcript />
