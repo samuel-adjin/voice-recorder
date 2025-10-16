@@ -3,7 +3,7 @@
 > A simple browser-based voice recorder built with Next.js.  
 > Record, play, download, and delete your audio recordings — with waveform visualization powered by Wavesurfer.js and state managed via React Context + useReducer.
 
-**Live Demo:** https://voice-recorder-cvel.vercel.app/record
+**Live Demo:** https://voice-recorder-cvel.vercel.app/
 
 ---
 
