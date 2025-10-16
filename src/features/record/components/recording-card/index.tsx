@@ -1,15 +1,16 @@
 "use client";
 import { Recording } from "@/features/common/components/audio-visualizer";
 import { Download } from "lucide-react";
+import { MouseEventHandler } from "react";
 
 type RecordingCardProps = {
   recording: Recording;
   count: number;
-  onDelete:any
+  onDelete:MouseEventHandler<HTMLButtonElement> | undefined  
 };
 const RecordingCard = ({ recording, count,onDelete }: RecordingCardProps) => {
 
-  let recordingName = count < 10 ? `voice_00${count}` : `voice_0${count}`;
+  const recordingName = count < 10 ? `voice_00${count}` : `voice_0${count}`;
   return (
     <div className="p-3 rounded-md shadow-sm flex justify-around bg-white xl:text-xs text-sm text-gray-400 items-center hover:outline-1 hover:outline-blue-500">
       <div className=" ">

@@ -12,7 +12,7 @@ const formatTime = (ms: number) => {
     return `${mm}:${ss}`;
 };
 
-export const initWaveSurfer = (recordRef: RefObject<any>, wavesurferRef: RefObject<any>, micRef: RefObject<any>, dispatch: ActionDispatch<[action: AudioAction]>) => {
+export const initWaveSurfer = (recordRef: RefObject<RecordPlugin|null>, wavesurferRef: RefObject<WaveSurfer | null>, micRef: RefObject<HTMLDivElement | null>, dispatch: ActionDispatch<[action: AudioAction]>) => {
     if (wavesurferRef.current) {
         try {
             wavesurferRef.current.destroy();
@@ -56,9 +56,9 @@ export const initWaveSurfer = (recordRef: RefObject<any>, wavesurferRef: RefObje
             dispatch({ type: "setProgress", payload: formattedTime });
         });
 
-        recordRef.current.on("deviceError", (err: any) => {
-            console.error("record plugin device error", err);
-        });
+        // recordRef.current.on("deviceError", (err: any) => {
+        //     console.error("record plugin device error", err);
+        // });
     } catch (e) {
         console.warn("could not attach record plugin listeners", e);
     }

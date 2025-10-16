@@ -41,7 +41,7 @@ const StartRecord = () => {
           <div className="">
             <h1 className="text-xs text-gray-500 text-center">
               To start recording, press the{" "}
-              <span className="text-black">"Start Recording"</span> button and
+              <span className="text-black">&rdquo;Start Recording&rdquo;</span> button and
               start recording
             </h1>
           </div>

@@ -11,7 +11,6 @@ const RecordVoice = () => {
           <AudioVisualizer />
         </div>
       </Header>
-      <Wave />
     </div>
   );
 };

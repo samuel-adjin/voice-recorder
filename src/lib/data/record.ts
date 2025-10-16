@@ -1,20 +1,21 @@
 import { RefObject } from "react";
+import RecordPlugin from "wavesurfer.js/dist/plugins/record.js";
 
 
-export const handlePause = async (recordRef: RefObject<any>) => {
+export const handlePause = async (recordRef: RefObject<RecordPlugin>) => {
     if (!recordRef.current) return;
     try {
         if (recordRef.current.isPaused?.()) {
-            await recordRef.current.resumeRecording();
+            recordRef.current.resumeRecording();
         } else {
-            await recordRef.current.pauseRecording();
+            recordRef.current.pauseRecording();
         }
     } catch (err) {
         console.error("pause/resume error", err);
     }
 };
 
-export const handleRecord = async (recordRef: RefObject<any>, selectedDevice: string) => {
+export const handleRecord = async (recordRef: RefObject<RecordPlugin>, selectedDevice: string) => {
     if (!recordRef.current) {
         console.warn("record plugin not initialized yet");
         return;
@@ -28,11 +29,11 @@ export const handleRecord = async (recordRef: RefObject<any>, selectedDevice: st
     }
 };
 
-export const handleStop = async (recordRef: RefObject<any>) => {
+export const handleStop = async (recordRef: RefObject<RecordPlugin>) => {
     if (!recordRef.current) return;
     try {
         if (recordRef.current.isRecording?.() || recordRef.current.isPaused?.()) {
-            await recordRef.current.stopRecording();
+            recordRef.current.stopRecording();
         }
     } catch (err) {
         console.error("stop recording error", err);
