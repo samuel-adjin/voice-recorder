@@ -1,0 +1,19 @@
+import Header from "@/features/common/components/header";
+import Wave from "@/features/common/components/wave-shape";
+import React from "react";
+import AudioVisualizer from "@/features/common/components/audio-visualizer";
+
+const RecordVoice = () => {
+  return (
+    <div>
+      <Header>
+        <div className="mb-5">
+          <AudioVisualizer />
+        </div>
+      </Header>
+      <Wave />
+    </div>
+  );
+};
+
+export default RecordVoice;
